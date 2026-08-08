@@ -15,14 +15,17 @@ A modern **AI-powered chatbot** built with **React**, **Tailwind CSS**, **Node.j
 
 * ChatGPT-style interface
 * Real-time AI responses
+* Streaming AI responses (ChatGPT-style typing)
 * User and AI message bubbles
 * Typing indicator animation
 * Auto-scrolling chat
+* Persistent chat history using localStorage
 * Clear chat button
 * Responsive design
 * Backend API integration
 * Error handling and graceful fallback support
 * Prompt-engineered educational responses
+
 ---
 
 ## 🛠️ Tech Stack
