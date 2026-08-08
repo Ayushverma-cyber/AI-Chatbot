@@ -22,7 +22,7 @@ A modern **AI-powered chatbot** built with **React**, **Tailwind CSS**, **Node.j
 * Responsive design
 * Backend API integration
 * Error handling and graceful fallback support
-
+* Prompt-engineered educational responses
 ---
 
 ## 🛠️ Tech Stack
