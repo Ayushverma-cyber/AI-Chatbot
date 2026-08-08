@@ -1,10 +1,17 @@
-# AI Chatbot using Gemini API
+# 🤖 AI Chatbot using Gemini API
 
-A modern AI chatbot built with **React**, **Tailwind CSS**, **Node.js**, and **Express.js**. The application provides a ChatGPT-style interface where users can send messages and receive AI-generated responses using **Google Gemini 3.6 Flash**.
+A modern **AI-powered chatbot** built with **React**, **Tailwind CSS**, **Node.js**, and **Express.js**. The application provides a ChatGPT-style conversational interface where users can send messages and receive AI-generated responses using **Google Gemini 3.6 Flash**.
 
 ---
 
-## Features
+## 🌐 Live Demo
+
+* **Frontend:** https://ai-chatbot-ten-kappa-89.vercel.app
+* **Backend:** https://ai-chatbot-12bc.onrender.com
+
+---
+
+## ✨ Features
 
 * ChatGPT-style interface
 * Real-time AI responses
@@ -14,11 +21,11 @@ A modern AI chatbot built with **React**, **Tailwind CSS**, **Node.js**, and **E
 * Clear chat button
 * Responsive design
 * Backend API integration
-* Error handling and fallback support
+* Error handling and graceful fallback support
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
 
@@ -36,7 +43,7 @@ A modern AI chatbot built with **React**, **Tailwind CSS**, **Node.js**, and **E
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 AI-Chatbot/
@@ -47,8 +54,7 @@ AI-Chatbot/
 │
 ├── backend/
 │   ├── server.js
-│   ├── package.json
-│   └── .env
+│   └── package.json
 │
 ├── .gitignore
 └── README.md
@@ -56,7 +62,7 @@ AI-Chatbot/
 
 ---
 
-## Local Installation
+## 🚀 Local Installation
 
 ### 1. Clone the repository
 
@@ -89,7 +95,7 @@ Backend runs on: **http://localhost:5000**
 
 ---
 
-## Environment Variables
+## 🔑 Environment Variables
 
 Create a file named **`backend/.env`** and add:
 
@@ -100,7 +106,7 @@ PORT=5000
 
 ---
 
-## How It Works
+## ⚙️ How It Works
 
 1. User enters a message in the React frontend.
 2. The frontend sends the message to the Express backend (`/chat`).
@@ -109,7 +115,29 @@ PORT=5000
 
 ---
 
-## Future Improvements
+## 📚 Key Learnings
+
+* React state management with hooks
+* API integration using `fetch`
+* Express REST API development
+* Environment variable management
+* Google Gemini API integration
+* Responsive UI design with Tailwind CSS
+* Error handling and graceful fallback implementation
+* Full-stack deployment workflow
+
+---
+
+## 🚀 Deployment
+
+This project is deployed using:
+
+* **Frontend:** Vercel
+* **Backend:** Render
+
+---
+
+## 🔮 Future Improvements
 
 * Conversation history storage
 * Markdown rendering
@@ -117,33 +145,12 @@ PORT=5000
 * Voice input support
 * Dark / light theme toggle
 * Authentication system
-* Save chats to database
-* Export chat as PDF
+* Save chats to a database
+* Export chats as PDF
 
 ---
 
-## Deployment
-
-This project can be deployed using:
-
-* **Frontend:** Vercel
-* **Backend:** Railway
-
----
-
-## Key Learnings
-
-* React state management
-* API integration with `fetch`
-* Express REST API development
-* Environment variable management
-* AI API integration with Google Gemini
-* Responsive UI design with Tailwind CSS
-* Error handling and graceful fallbacks
-
----
-
-## Author
+## 👨‍💻 Author
 
 **Ayush Verma**
 
@@ -152,6 +159,6 @@ This project can be deployed using:
 
 ---
 
-## License
+## 📄 License
 
 This project is intended for **educational and portfolio purposes**.
