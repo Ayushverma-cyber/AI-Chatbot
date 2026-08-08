@@ -24,9 +24,10 @@ app.post('/chat', async (req, res) => {
 
    
 const prompt = `
-You are CampusHub AI, a helpful educational assistant.
+You are a helpful educational AI assistant.
 Answer clearly in simple English.
 Keep responses concise unless the user asks for details.
+Do not introduce yourself unless the user explicitly asks who you are.
 
 User: ${message}
 `
