@@ -6,18 +6,30 @@ function App() {
   const [loading, setLoading] = useState(false)
 
   const API_URL = import.meta.env.VITE_API_URL
-
   const bottomRef = useRef(null)
 
-  // Welcome message
+  // Load saved chat history on first visit
   useEffect(() => {
-    setMessages([
-      {
-        role: 'ai',
-        text: '👋 Hi! I am your Gemini AI assistant. Ask me anything.',
-      },
-    ])
+    const saved = localStorage.getItem('chat-history')
+
+    if (saved) {
+      setMessages(JSON.parse(saved))
+    } else {
+      setMessages([
+        {
+          role: 'ai',
+          text: '👋 Hi! I am your Gemini AI assistant. Ask me anything.',
+        },
+      ])
+    }
   }, [])
+
+  // Save chat history whenever messages change
+  useEffect(() => {
+    if (messages.length > 0) {
+      localStorage.setItem('chat-history', JSON.stringify(messages))
+    }
+  }, [messages])
 
   // Auto-scroll to latest message
   useEffect(() => {
@@ -27,27 +39,26 @@ function App() {
   const sendMessage = async () => {
     if (!message.trim()) return
 
+    const currentMessage = message
+
     const userMessage = {
       role: 'user',
-      text: message,
+      text: currentMessage,
     }
 
     setMessages((prev) => [...prev, userMessage])
-
-    const currentMessage = message
     setMessage('')
     setLoading(true)
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL
+      const response = await fetch(`${API_URL}/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: currentMessage }),
+      })
 
-const response = await fetch(`${API_URL}/chat`, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ message }),
-})
       const data = await response.json()
 
       const aiMessage = {
@@ -76,12 +87,15 @@ const response = await fetch(`${API_URL}/chat`, {
   }
 
   const clearChat = () => {
-    setMessages([
+    const cleared = [
       {
         role: 'ai',
         text: '👋 Chat cleared. Ask me something new!',
       },
-    ])
+    ]
+
+    setMessages(cleared)
+    localStorage.setItem('chat-history', JSON.stringify(cleared))
   }
 
   return (
