@@ -37,48 +37,83 @@ function App() {
   }, [messages])
 
   const sendMessage = async () => {
-    if (!message.trim()) return
+  if (!message.trim()) return
 
-    const currentMessage = message
+  const currentMessage = message
 
-    const userMessage = {
-      role: 'user',
-      text: currentMessage,
-    }
-
-    setMessages((prev) => [...prev, userMessage])
-    setMessage('')
-    setLoading(true)
-
-    try {
-      const response = await fetch(`${API_URL}/chat`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: currentMessage }),
-      })
-
-      const data = await response.json()
-
-      const aiMessage = {
-        role: 'ai',
-        text: data.reply,
-      }
-
-      setMessages((prev) => [...prev, aiMessage])
-    } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: 'ai',
-          text: '❌ Failed to connect to AI server.',
-        },
-      ])
-    } finally {
-      setLoading(false)
-    }
+  const userMessage = {
+    role: 'user',
+    text: currentMessage,
   }
+
+  setMessages((prev) => [...prev, userMessage])
+  setMessage('')
+  setLoading(true)
+
+  // Add empty AI message first
+  let aiIndex
+
+  setMessages((prev) => {
+    aiIndex = prev.length + 1
+    return [...prev, { role: 'ai', text: '' }]
+  })
+
+  try {
+    const response = await fetch(`${API_URL}/chat-stream`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: currentMessage }),
+    })
+
+    const reader = response.body.getReader()
+    const decoder = new TextDecoder()
+
+    let buffer = ''
+
+    while (true) {
+      const { value, done } = await reader.read()
+
+      if (done) break
+
+      buffer += decoder.decode(value, { stream: true })
+
+      const parts = buffer.split('\n\n')
+      buffer = parts.pop()
+
+      for (const part of parts) {
+        if (!part.startsWith('data: ')) continue
+
+        const data = part.replace('data: ', '').trim()
+
+        if (data === '[DONE]') continue
+
+        const text = JSON.parse(data)
+
+        setMessages((prev) => {
+          const updated = [...prev]
+          updated[updated.length - 1] = {
+            ...updated[updated.length - 1],
+            text: updated[updated.length - 1].text + text,
+          }
+          return updated
+        })
+      }
+    }
+  } catch (error) {
+    setMessages((prev) => {
+      const updated = [...prev]
+      updated[updated.length - 1] = {
+        role: 'ai',
+        text: '❌ Failed to connect to AI server.',
+      }
+      return updated
+    })
+  } finally {
+    setLoading(false)
+  }
+}
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
