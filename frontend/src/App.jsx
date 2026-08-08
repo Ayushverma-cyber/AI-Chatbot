@@ -5,6 +5,8 @@ function App() {
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
 
+  const API_URL = import.meta.env.VITE_API_URL
+
   const bottomRef = useRef(null)
 
   // Welcome message
@@ -37,14 +39,15 @@ function App() {
     setLoading(true)
 
     try {
-      const response = await fetch('http://localhost:5000/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: currentMessage }),
-      })
+      const API_URL = import.meta.env.VITE_API_URL
 
+const response = await fetch(`${API_URL}/chat`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ message }),
+})
       const data = await response.json()
 
       const aiMessage = {
