@@ -22,10 +22,19 @@ app.post('/chat', async (req, res) => {
       return res.status(400).json({ error: 'Message is required' })
     }
 
-    const result = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
-      contents: message,
-    })
+   
+const prompt = `
+You are CampusHub AI, a helpful educational assistant.
+Answer clearly in simple English.
+Keep responses concise unless the user asks for details.
+
+User: ${message}
+`
+
+const result = await ai.models.generateContent({
+  model: 'gemini-3.6-flash',
+  contents: prompt,
+})
 
     res.json({
       reply: result.text,
