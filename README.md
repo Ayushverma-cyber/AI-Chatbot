@@ -1,3 +1,5 @@
+![CI](https://github.com/Ayushverma-cyber/AI-Chatbot/actions/workflows/ci.yml/badge.svg)
+
 # 🤖 AI Chatbot using Gemini API
 
 [![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://ai-chatbot-ten-kappa-89.vercel.app)
