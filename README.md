@@ -1,8 +1,12 @@
 # 🤖 AI Chatbot using Gemini API
 
-[![Vercel](https://img.shields.io/badge/Live-Vercel-black?logo=vercel)](https://weather-app-weld-sigma-tfi7txf25k.vercel.app/)
+[![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://ai-chatbot-ten-kappa-89.vercel.app)
+[![Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render)](https://ai-chatbot-12bc.onrender.com)
 ![React](https://img.shields.io/badge/React-20232A?logo=react)
-![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite)
+![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js)
+![Express](https://img.shields.io/badge/Express-000000?logo=express)
+![Gemini](https://img.shields.io/badge/Gemini-4285F4?logo=google)
+
 
 A modern **AI-powered chatbot** built with **React**, **Tailwind CSS**, **Node.js**, and **Express.js**. The application provides a ChatGPT-style conversational interface where users can send messages and receive AI-generated responses using **Google Gemini 3.6 Flash**.
 
